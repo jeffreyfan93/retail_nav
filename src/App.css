@@ -1,22 +1,44 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cities-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #09d3ac;
+button {
+  border: none;
+  padding: 0;
+  margin: 10px;
+  outline: none;
+  font-size: 16px;
+  color: darkgray;
+  cursor: pointer;
+  background-color: white;
+}
+
+button:hover {
+  color: rgb(0, 122, 255);
+}
+
+.current-city,
+.current-city:hover {
+  color: black;
+}
+
+.slider {
+  height: 1px;
+  border-bottom: 1px solid lightgray; 
+}
+
+#slider-underline {
+  height: 1px;
+  position: relative;
+  border-bottom: 1px solid black;
+  transition: all 0.5s;
+}
+
+.time-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 24px;
 }
