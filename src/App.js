@@ -16,8 +16,12 @@ function App() {
   };
 
   useEffect(() => {
-    resize();
-  }, [currCity]);
+    // resize the slider to update position and size to match the text.
+    const currDiv = document.getElementById(currCity);
+    const sliderUnderline = document.getElementById('slider-underline');
+    sliderUnderline.style.left = `${currDiv.offsetLeft}px`;
+    sliderUnderline.style.width = `${currDiv.offsetWidth}px`;
+  }, [currCity, window.innerWidth]);
   
   useEffect(() => {
     getTime();
@@ -26,14 +30,6 @@ function App() {
     }, 1000)
     return () => {clearInterval(startTimer)}
   }, [currCity]);
-  
-  const resize = () => {
-    // resize the slider to update position and size to match the text.
-    const currDiv = document.getElementById(currCity);
-    const sliderUnderline = document.getElementById('slider-underline');
-    sliderUnderline.style.left = `${currDiv.offsetLeft}px`;
-    sliderUnderline.style.width = `${currDiv.offsetWidth}px`;
-  };
 
   const getTime = () => {
     const time = new Date();
