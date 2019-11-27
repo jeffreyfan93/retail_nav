@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { isTSUndefinedKeyword } from '@babel/types';
 
 function App() {
   const navigation = require('./json/navigation.json');
@@ -16,13 +17,9 @@ function App() {
   };
 
   useEffect(() => {
-    // resize the slider to update position and size to match the text.
-    const currDiv = document.getElementById(currCity);
-    const sliderUnderline = document.getElementById('slider-underline');
-    sliderUnderline.style.left = `${currDiv.offsetLeft}px`;
-    sliderUnderline.style.width = `${currDiv.offsetWidth}px`;
-  }, [currCity, window.innerWidth]);
-  
+    resize();
+  }, [currCity]);
+
   useEffect(() => {
     getTime();
     const startTimer = setInterval(() => {
@@ -30,6 +27,18 @@ function App() {
     }, 1000)
     return () => {clearInterval(startTimer)}
   }, [currCity]);
+
+  const resize = () => {
+    // Resize the slider to update position and size to match the text.
+    const currDiv = document.getElementById(currCity);
+    const sliderUnderline = document.getElementById('slider-underline');
+    sliderUnderline.style.left = `${currDiv.offsetLeft}px`;
+    sliderUnderline.style.width = `${currDiv.offsetWidth}px`;
+  }
+
+  // Add event listener to resize slider-underline when window size changes.
+  // I could also add window.innerWidth to the list of dependencies in the useEffect hook that calls resize().
+  window.onresize = resize;
 
   const getTime = () => {
     const time = new Date();
